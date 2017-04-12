@@ -10,11 +10,12 @@ the Pi Zero as a device, so I searched for a driver someone provided for the sam
 ## Create VM with 2 interfaces.  
   Installed an Ubuntu Server 14.04 with two interfaces:
   1st interface must be configured while Pi-Zero-W is connected as an RNDIS device:  
+    
   ![RNDIS_Adapter](imgs/server_adapter_1.png)  
   2nd interface is for the VM, so that it can have Internet connection.It's in the BRIDGED MODE  
   ![BRIDGED_ADAPTER](imgs/server_adapter_2.png)  
   ## VM Network Configuration  
-  ###Configure the adapters  
+  ### Configure the adapters  
   It's the "/etc/network/interfaces" file.  
 ```
 # This file describes the network interfaces available on your system
@@ -38,7 +39,7 @@ address 192.168.3.1
 netmask 255.255.255.0
 ```  
   
-###Configure routing  
+### Configure routing  
 The next rules seem to work fine. iptables-persistent package needs to be installed  
 Make sure using superuser account  
 
@@ -65,7 +66,7 @@ iptables -I INPUT -s 192.168.10.0/24 -m state --state ESTABLISHED,RELATED -j ACC
 sudo netfilter-persistent save
 ```  
   
- ##Pi Zero Configuration  
+ ## Pi Zero Configuration  
  Configure the usb network adapter so that it's in the same network as VM.  
  The only part modified here is the usb0 part at the end.  
 ```
