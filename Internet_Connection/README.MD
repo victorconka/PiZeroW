@@ -99,7 +99,32 @@ netmask 255.255.255.0
 gateway 192.168.3.1
 dns-nameservers 8.8.8.8
 ```  
+## DHCP
+Install DHCP
+```
+sudo apt-get install isc-dhcp-server
+```  
+Configure interface
+```
+sudo nano -c /etc/default/isc-dhcp-server
+```  
+Configure dhcp network
+```
+sudo nano -c /etc/dhcp/dhcpd.conf
+```  
+The configuration for dhcp to copy at the end
+```  
+subnet 192.168.3.0 netmask 255.255.255.0 {  #network
+	range 192.168.3.50 192.168.3.100; # Range
+	option domain-name-servers 8.8.8.8; #Pri DNS , Sec DNS
+	option domain-name "lintut.com"; #Domain name 
+	option routers 192.168.3.1; #Gateway
+	option broadcast-address 192.168.3.255; #Broadcast
+	default-lease-time 600;
+	max-lease-time 7200;
+}
 
+```  
 Looks like thats it.  
 Shutdown the VM and Pi Zero.  
 Turn on the PiZero and then power up the VM, elsewise the VirtualBox will not detect the device's network properly.  
