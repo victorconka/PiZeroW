@@ -64,6 +64,7 @@ iptables -A FORWARD -s 192.168.10.0/24 -o eth0 -j ACCEPT
 iptables -I INPUT -s 192.168.10.0/24 -m state --state ESTABLISHED,RELATED -j ACCEPT
 
 sudo netfilter-persistent save
+#sudo service iptables-persistent save
 ```  
   
  ## Pi Zero Configuration  
